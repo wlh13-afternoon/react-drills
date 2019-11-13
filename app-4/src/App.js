@@ -1,18 +1,26 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    username: '',
+    password: ''
+  }
+  handleChange = e => {
+    this.setState({
+      [e.target.placeholder]: e.target.value
+    })
+  }
+  alertStuff = () => {
+    alert(`Username: ${this.state.username}, Password: ${this.state.password}`)
+  }
   render() {
+    // console.log(this.state.username, this.state.password)
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <input onChange={e => this.handleChange(e)} placeholder='username' type="text" value={this.state.username}/>
+        <input onChange={e => this.handleChange(e)} placeholder='password' type="password" value={this.state.password}/>
+        <button onClick={() => this.alertStuff()}>Submit</button>
       </div>
     );
   }
